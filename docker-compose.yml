@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=prestashop
+    volumes:
+      - ./db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  prestashop:
+    image: prestashop/prestashop:1.7
+    ports:
+      - "8080:80"
+    volumes:
+      - ./prestashop:/var/www/html
+    environment:
+      - ADMIN_MAIL=demo@prestashop.com
+      - ADMIN_PASSWD=prestashop_demo
+      - PS_COUNTRY=AR
+      - PS_INSTALL_AUTO=1
+      - PS_ERASE_DB=1
+      - PS_HANDLE_DYNAMIC_DOMAIN=1
+      - PS_LANGUAGE=es
+      - DB_SERVER=db
+      - DB_USER=root
+      - DB_PASSWD=secret
+    depends_on:
+      - db
