@@ -11,6 +11,7 @@ services:
       - "3306:3306"
   prestashop:
     image: prestashop/prestashop:1.7
+    restart: on-failure
     ports:
       - "8080:80"
     volumes:
@@ -23,8 +24,12 @@ services:
       - PS_ERASE_DB=1
       - PS_HANDLE_DYNAMIC_DOMAIN=1
       - PS_LANGUAGE=es
+      - PS_COUNTRY=ES
       - DB_SERVER=db
       - DB_USER=root
       - DB_PASSWD=secret
+      - PS_DOMAIN=127.0.0.1:8080
+      - PS_FOLDER_ADMIN=admin0
+      - PS_FOLDER_INSTALL=install0
     depends_on:
       - db
