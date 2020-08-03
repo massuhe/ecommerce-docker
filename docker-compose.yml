@@ -29,7 +29,7 @@ services:
       - DB_SERVER=db
       - DB_USER=root
       - DB_PASSWD=secret
-      - PS_DOMAIN=190.114.204.125:8080
+      - PS_DOMAIN=190.114.204.126:8080
       - PS_FOLDER_ADMIN=admin0
       - PS_FOLDER_INSTALL=install0
     depends_on:
